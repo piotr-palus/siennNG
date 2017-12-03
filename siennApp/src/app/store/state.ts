@@ -3,16 +3,12 @@ import {Action} from '@ngrx/store';
 // STATE
 export interface State {
   loggedIn: boolean;
-  name: string;
-  email: string;
-  users: string[];
+  products: string[];
 }
 
 export const initialState: State = {
   loggedIn: false,
-  name: '',
-  email: '',
-  users: []
+  products: []
 };
 
 // ACTIONS
@@ -35,30 +31,40 @@ export class Logout implements Action {
   }
 }
 
-export const SAVE_USER_INFO = 'SAVE_USER_INFO';
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 
-export class SaveUserInfo implements Action {
-  readonly type = SAVE_USER_INFO;
+export class FetchProducts implements Action {
+  readonly type = FETCH_PRODUCTS;
 
-  constructor(public payload: any) {
+  constructor(public payload?: any) {
   }
 }
 
-export const ADD_USER_TO_GAME = 'ADD_USER_TO_GAME';
 
-export class AddUserToGame implements Action {
-  readonly type = ADD_USER_TO_GAME;
+export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 
-  constructor(public payload: any) {
+export class FetchProductsSuccess implements Action {
+  readonly type = FETCH_PRODUCTS_SUCCESS;
+
+  constructor(public payload?: any) {
   }
 }
 
-export const UPDATE_USERS_IN_GAME = 'UPDATE_USERS_IN_GAME';
+export const UPLOAD_PRODUCT = 'UPLOAD_PRODUCT';
 
-export class UpdateUsersInGame implements Action {
-  readonly type = UPDATE_USERS_IN_GAME;
+export class UploadProduct implements Action {
+  readonly type = UPLOAD_PRODUCT;
 
-  constructor(public payload: any) {
+  constructor(public payload?: any) {
+  }
+}
+
+export const UPLOAD_PRODUCT_SUCCESS = 'UPLOAD_PRODUCT_SUCCESS';
+
+export class UploadProductSuccess implements Action {
+  readonly type = UPLOAD_PRODUCT_SUCCESS;
+
+  constructor(public payload?: any) {
   }
 }
 
@@ -81,25 +87,17 @@ export function appReducer(state = initialState, action: Action): State {
       };
     }
 
-    case SAVE_USER_INFO: {
+    case FETCH_PRODUCTS_SUCCESS: {
       return {
         ...state,
-        email: action.payload.email,
-        name: action.payload.name
+        products: action.payload
       };
     }
 
-    case ADD_USER_TO_GAME: {
+    case UPLOAD_PRODUCT_SUCCESS: {
       return {
         ...state,
-        users: [...state.users, action.payload]
-      };
-    }
-
-    case UPDATE_USERS_IN_GAME: {
-      return {
-        ...state,
-        users: action.payload
+        products: action.payload
       };
     }
 
@@ -111,14 +109,10 @@ export function appReducer(state = initialState, action: Action): State {
 export type Actions
   = Login |
   Logout |
-  SaveUserInfo |
-  AddUserToGame |
-  UpdateUsersInGame;
+  FetchProducts;
 
 
 // SELECTORS
 
 export const getLoggedState = (state: State) => state.loggedIn;
-export const getUserName = (state: State) => state.name;
-export const getUserEmail = (state: State) => state.email;
-export const getUsersInGame = (state: State) => state.users;
+export const getProducts = (state: State) => state.products;

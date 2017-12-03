@@ -4,7 +4,7 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class RestService {
-  apiUrl = 'http://recruits.siennsoft.com/swagger/v1/';
+  apiUrl = 'http://recruits.siennsoft.com/api/';
 
   constructor(private http: Http) {
   }

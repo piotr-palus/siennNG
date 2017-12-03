@@ -1,41 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7125e221-3509-4679-86dd-a138a2adaaa7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/siennApp/src/app/guards/auth.guard.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/siennApp/src/app/store/state.ts" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/.angular-cli.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/e2e/app.e2e-spec.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/e2e/app.po.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/e2e/tsconfig.e2e.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/package-lock.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/protractor.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/app/app.component.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/app/app.component.spec.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/app/app.component.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/app/app.module.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/environments/environment.prod.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/environments/environment.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/main.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/polyfills.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/test.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/tsconfig.app.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/tsconfig.spec.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/src/typings.d.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/tsconfig.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/siennApp/tslint.json" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/siennApp/src/app/app.component.css" afterPath="$PROJECT_DIR$/siennApp/src/app/core/core.module.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/siennApp/src/assets/.gitkeep" afterPath="$PROJECT_DIR$/siennApp/src/app/core/rest.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="7125e221-3509-4679-86dd-a138a2adaaa7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -235,12 +201,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512233327847</updated>
-      <workItem from="1512233330200" duration="10560000" />
+      <workItem from="1512233330200" duration="11142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10560000" />
+    <option name="totallyTimeSpent" value="11142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />

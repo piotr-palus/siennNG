@@ -12,8 +12,7 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss'],
-  providers: [AuthGuard],
+  styleUrls: ['./top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit {
   logged$: Observable<boolean>;
@@ -29,19 +28,6 @@ export class TopMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.guard.isAuthenticated()) {
-      this.store.dispatch(new fromRoot.Login);
-
-      this.token = sessionStorage.getItem('Token');
-
-      const headers = new Headers();
-      headers.append('Authorization', 'bearer ' + this.token);
-
-      const options = new RequestOptions();
-      options.headers = headers;
-
-
-    }
     this.logged$ = this.store.select(fromRoot.getLoggedState);
   }
 
