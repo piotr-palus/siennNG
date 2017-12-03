@@ -1,0 +1,16 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+    <md-input-container>
+      <input mdInput placeholder="E-mail" formControlName="email" type="email">
+      <md-hint *ngIf="email.errors?.required && (email.dirty || email.touched)" [ngStyle]="{'color': 'red'}"> Email is required </md-hint>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Password" type="password" formControlName="password">
+      <md-hint *ngIf="password.errors?.required && (password.dirty || password.touched)" [ngStyle]="{'color': 'red'}"> Password is required </md-hint>
+    </md-input-container>
+    <div class="button-container">
+      <button type="submit" class="half-width" md-raised-button color="primary">Log in</button>
+    </div>
+    <span class="error">{{errors}}</span>
+  </form>
+</div>

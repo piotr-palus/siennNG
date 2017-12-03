@@ -1,0 +1,12 @@
+<md-toolbar color="primary">
+  <span routerLink="/">BoardRoom</span>
+  <div class="spacer"></div>
+  <span *ngIf="logged$ | async; else logout">
+    <span routerLink="/login-on-other-device" style="margin-right: 20px;">QR</span>
+    <span (click)="logOut()">Log out</span>
+  </span>
+  <ng-template #logout>
+    <span class="login" routerLink="/login">Log in</span>
+    <span class="register" routerLink="/register">Register</span>
+  </ng-template>
+</md-toolbar>
