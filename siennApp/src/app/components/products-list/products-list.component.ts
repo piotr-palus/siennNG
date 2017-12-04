@@ -1,10 +1,11 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Sort} from '@angular/material';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+  styleUrls: ['./products-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsListComponent implements OnInit, OnChanges {
   @Input() products;
@@ -24,6 +25,7 @@ export class ProductsListComponent implements OnInit, OnChanges {
 
 
   sortData(sort: Sort) {
+    console.log(sort);
     const data = this.products.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;

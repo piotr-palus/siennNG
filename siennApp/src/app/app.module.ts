@@ -8,21 +8,20 @@ import {LoginComponent} from './components/login/login.component';
 import {HomeComponent} from './components/home/home.component';
 import {TopMenuComponent} from './core/top-menu/top-menu.component';
 import {StoreModule} from '@ngrx/store';
-import {appReducer, initialState, metaReducers} from './store/state';
+import {metaReducers} from './store/state';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {Effects} from './effects/effects';
 import {AuthGuard} from './guards/auth.guard';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatFormFieldModule, MatToolbarModule, MatInputModule} from '@angular/material';
-import {PageProductsComponent} from './components/page-list/page-products.component';
+import {MatButtonModule, MatFormFieldModule, MatToolbarModule, MatInputModule, MatSortModule} from '@angular/material';
+import {PageProductsComponent} from './components/page-products/page-products.component';
 import {environment} from '../environments/environment';
 import {AuthService} from './core/auth.service';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from './core/token.interceptor';
 import {ProductsService} from './core/products.service';
 import {ProductsListComponent} from './components/products-list/products-list.component';
-import {ProductComponent} from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import {ProductComponent} from './components/product/product.component';
     HomeComponent,
     TopMenuComponent,
     PageProductsComponent,
-    ProductsListComponent,
-    ProductComponent
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +44,7 @@ import {ProductComponent} from './components/product/product.component';
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
+    MatSortModule,
     StoreModule.forRoot({}, {metaReducers: metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 50}) : []
   ],

@@ -3,13 +3,12 @@ import {Actions, Effect} from '@ngrx/effects';
 import {Action, Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/withLatestFrom';
 
 import * as fromRoot from '../store/state';
 import {AuthService} from '../core/auth.service';
 import {ProductsService} from '../core/products.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class Effects {
@@ -18,7 +17,10 @@ export class Effects {
   login: Observable<Action> = this.actions$
     .ofType(fromRoot.LOGIN)
     .switchMap((action: fromRoot.Login) => this.authSv.login(action.payload)
-      .map(response => new fromRoot.LoginSuccess(response))
+      .map(response => {
+        this.router.navigate(['/products']);
+        return new fromRoot.LoginSuccess(response);
+      })
     );
 
   @Effect()
@@ -32,6 +34,7 @@ export class Effects {
   constructor(private actions$: Actions,
               private store: Store<fromRoot.State>,
               private authSv: AuthService,
-              private productsSv: ProductsService) {
+              private productsSv: ProductsService,
+              private router: Router) {
   }
 }

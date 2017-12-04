@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../store/state';
 
@@ -22,8 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-              private store: Store<fromRoot.State>,
-              private router: Router) {
+              private store: Store<fromRoot.State>) {
 
   }
 
@@ -39,8 +37,6 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/products']);
     this.store.dispatch(new fromRoot.Login(this.loginForm.value));
-
   }
 }

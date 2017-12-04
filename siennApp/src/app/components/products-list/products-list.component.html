@@ -1,9 +1,9 @@
-<table mdSort (mdSortChange)="sortData($event)">
+<table matSort (matSortChange)="sortData($event)">
   <tr>
-    <th md-sort-header="productID">ID</th>
-    <th md-sort-header="name">Name</th>
-    <th md-sort-header="price">Price</th>
-    <th md-sort-header="description">Description</th>
+    <th mat-sort-header="productID">ID</th>
+    <th mat-sort-header="name">Name</th>
+    <th mat-sort-header="price">Price</th>
+    <th mat-sort-header="description">Description</th>
   </tr>
 
   <tr *ngFor="let product of sortedData">
