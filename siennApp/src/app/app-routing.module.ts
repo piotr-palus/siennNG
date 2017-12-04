@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from "./components/login/login.component";
-import {HomeComponent} from "./components/home/home.component";
-import {ShellComponent} from "./core/shell/shell.component";
+import {LoginComponent} from './components/login/login.component';
+import {HomeComponent} from './components/home/home.component';
+import {ShellComponent} from './core/shell/shell.component';
+import {PageProductsComponent} from './components/page-list/page-products.component';
+import {AuthGuard} from './guards/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -16,6 +18,11 @@ const appRoutes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'products',
+        component: PageProductsComponent,
+        /*canActivate: [AuthGuard]*/
       }
     ]
   },

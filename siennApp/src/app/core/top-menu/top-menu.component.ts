@@ -5,14 +5,14 @@ import {AuthGuard} from "../../guards/auth.guard";
 import {Router} from "@angular/router";
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../store/state';
-import {Observable} from "rxjs/Observable";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  styleUrls: ['./top-menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopMenuComponent implements OnInit {
   logged$: Observable<boolean>;
@@ -20,10 +20,8 @@ export class TopMenuComponent implements OnInit {
   userName$: Observable<string>;
   userEmail$: Observable<string>;
 
-  constructor(private guard: AuthGuard,
-              private router: Router,
+  constructor(private router: Router,
               private store: Store<fromRoot.State>,
-              private http: Http,
               private cd: ChangeDetectorRef) {
   }
 
@@ -32,8 +30,6 @@ export class TopMenuComponent implements OnInit {
   }
 
   logOut() {
-    sessionStorage.clear();
-    localStorage.clear();
     this.store.dispatch(new fromRoot.Logout);
     this.router.navigate(['/login']);
   }

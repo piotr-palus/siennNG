@@ -3,6 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate, Router, RouterStateSnapshot
 } from '@angular/router';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -15,15 +16,16 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+    this.router.navigate(['/login']);
     return false;
   }
 
-  isAuthenticated() {
-    return !!this.getToken();
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return tokenNotExpired(null, token);
   }
 
-  getToken() {
-    return sessionStorage.getItem('Token') || localStorage.getItem( 'Token');
+  getToken(): string {
+    return sessionStorage.getItem('SiennToken');
   }
 }

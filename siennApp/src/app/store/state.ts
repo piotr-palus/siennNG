@@ -1,5 +1,10 @@
 import {Action} from '@ngrx/store';
 
+export interface OwnAction extends Action {
+  type: string;
+  payload?: any;
+}
+
 // STATE
 export interface State {
   loggedIn: boolean;
@@ -22,10 +27,28 @@ export class Login implements Action {
   }
 }
 
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+export class LoginSuccess implements Action {
+  readonly type = LOGIN_SUCCESS;
+
+  constructor(public payload?: any) {
+  }
+}
+
 export const LOGOUT = 'LOGOUT';
 
 export class Logout implements Action {
   readonly type = LOGOUT;
+
+  constructor(public payload?: any) {
+  }
+}
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+export class LogoutSuccess implements Action {
+  readonly type = LOGOUT_SUCCESS;
 
   constructor(public payload?: any) {
   }
@@ -46,7 +69,7 @@ export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export class FetchProductsSuccess implements Action {
   readonly type = FETCH_PRODUCTS_SUCCESS;
 
-  constructor(public payload?: any) {
+  constructor(public payload?: null) {
   }
 }
 
@@ -71,16 +94,19 @@ export class UploadProductSuccess implements Action {
 
 // REDUCER
 
-export function appReducer(state = initialState, action: Action): State {
+export function appReducer(state = initialState, action: OwnAction): State {
   switch (action.type) {
-    case LOGIN: {
+    case LOGIN_SUCCESS: {
+      console.log(action.payload);
+      sessionStorage.setItem('SiennToken', action.payload.access_token);
       return {
         ...state,
         loggedIn: true
       };
     }
 
-    case LOGOUT: {
+    case LOGOUT_SUCCESS: {
+      sessionStorage.removeItem('SiennToken');
       return {
         ...state,
         loggedIn: false
@@ -108,6 +134,7 @@ export function appReducer(state = initialState, action: Action): State {
 
 export type Actions
   = Login |
+  LoginSuccess|
   Logout |
   FetchProducts;
 

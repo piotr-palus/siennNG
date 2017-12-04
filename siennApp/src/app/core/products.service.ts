@@ -4,15 +4,15 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class AuthService {
+export class ProductsService {
   apiUrl: string;
 
   constructor(private http: HttpClient) {
     this.apiUrl = `${environment.apiUrl}`;
   }
 
-  login(payload: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Jwt`, `UserName=${payload.UserName}&Password=${payload.Password}`);
+  getProducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Products`);
   }
 
 }

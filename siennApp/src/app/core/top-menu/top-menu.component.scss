@@ -1,0 +1,15 @@
+:host {
+
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  span{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+
