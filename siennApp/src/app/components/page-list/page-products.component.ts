@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import * as fromRoot from '../../store/state';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-page-products',
@@ -6,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-products.component.scss']
 })
 export class PageProductsComponent implements OnInit {
+  products$: Observable<Object[]>;
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-
+    this.store.dispatch(new fromRoot.FetchProducts);
+    this.products$ = this.store.select(fromRoot.getProducts);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Action} from '@ngrx/store';
+import {Action, ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 export interface OwnAction extends Action {
   type: string;
@@ -16,6 +16,15 @@ export const initialState: State = {
   products: []
 };
 
+// new: metaReducer that just calls the main reducer
+export function metaReducer(reducer: ActionReducer<State>): ActionReducer<State> {
+  return function (state, action) {
+    return appReducer(state, action);
+  };
+}
+
+// new: MetaReducer for StoreModule.forRoot()
+export const metaReducers: MetaReducer<any>[] = [metaReducer];
 // ACTIONS
 
 export const LOGIN = 'LOGIN';
@@ -97,7 +106,6 @@ export class UploadProductSuccess implements Action {
 export function appReducer(state = initialState, action: OwnAction): State {
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      console.log(action.payload);
       sessionStorage.setItem('SiennToken', action.payload.access_token);
       return {
         ...state,
@@ -105,7 +113,7 @@ export function appReducer(state = initialState, action: OwnAction): State {
       };
     }
 
-    case LOGOUT_SUCCESS: {
+    case LOGOUT: {
       sessionStorage.removeItem('SiennToken');
       return {
         ...state,

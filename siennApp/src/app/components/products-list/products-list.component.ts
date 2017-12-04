@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Sort} from '@angular/material';
 
 @Component({
@@ -6,28 +6,25 @@ import {Sort} from '@angular/material';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnChanges {
   @Input() products;
   sortedData = [];
 
-  produc = [
-    {productID: 'Frozen yogurt', name: '159', price: '6', description: '24'},
-    {productID: 'Ice cream sandwich', name: '237', price: '9', description: '37'},
-    {productID: 'Eclair', name: '262', price: '16', description: '24'},
-    {productID: 'Cupcake', name: '305', price: '4', description: '67'},
-    {productID: 'Gingerbread', name: '356', price: '16', description: '49'},
-  ];
-
   constructor() {
-    this.sortedData = this.produc.slice();
   }
 
   ngOnInit() {
   }
 
+  ngOnChanges() {
+    if (this.products.length) {
+      this.sortedData = this.products.slice();
+    }
+  }
+
 
   sortData(sort: Sort) {
-    const data = this.produc.slice();
+    const data = this.products.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;

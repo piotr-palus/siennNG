@@ -22,7 +22,7 @@ const appRoutes: Routes = [
       {
         path: 'products',
         component: PageProductsComponent,
-        /*canActivate: [AuthGuard]*/
+        canActivate: [AuthGuard]
       }
     ]
   },

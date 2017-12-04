@@ -8,7 +8,7 @@ import {LoginComponent} from './components/login/login.component';
 import {HomeComponent} from './components/home/home.component';
 import {TopMenuComponent} from './core/top-menu/top-menu.component';
 import {StoreModule} from '@ngrx/store';
-import {appReducer, initialState} from './store/state';
+import {appReducer, initialState, metaReducers} from './store/state';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
 import {Effects} from './effects/effects';
@@ -46,7 +46,7 @@ import {ProductComponent} from './components/product/product.component';
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}, {metaReducers: metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument({maxAge: 50}) : []
   ],
   providers: [AuthGuard, AuthService, ProductsService,

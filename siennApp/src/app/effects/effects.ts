@@ -18,20 +18,20 @@ export class Effects {
   login: Observable<Action> = this.actions$
     .ofType(fromRoot.LOGIN)
     .switchMap((action: fromRoot.Login) => this.authSv.login(action.payload)
-      .map((response : Observable<any>) => new fromRoot.LoginSuccess(response))
+      .map(response => new fromRoot.LoginSuccess(response))
     );
 
   @Effect()
   fetchProducts: Observable<Action> = this.actions$
     .ofType(fromRoot.FETCH_PRODUCTS)
     .switchMap((action: fromRoot.FetchProducts) => this.productsSv.getProducts()
-      .map(response => new fromRoot.FetchProductsSuccess(response.json()))
+      .map(response => new fromRoot.FetchProductsSuccess(response))
     );
 
 
   constructor(private actions$: Actions,
               private store: Store<fromRoot.State>,
               private authSv: AuthService,
-              private productsSv: ProductsService
-  ) {}
+              private productsSv: ProductsService) {
+  }
 }
