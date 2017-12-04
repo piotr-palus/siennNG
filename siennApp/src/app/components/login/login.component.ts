@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(new fromRoot.Login(this.loginForm.value));
     this.router.navigate(['/products']);
+    this.store.dispatch(new fromRoot.Login(this.loginForm.value));
+
   }
 }

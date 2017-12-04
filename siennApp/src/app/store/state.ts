@@ -45,21 +45,21 @@ export class LoginSuccess implements Action {
   }
 }
 
+export const SET_LOGGEDIN_STATE = 'SET_LOGGEDIN_STATE';
+
+export class SetLoggedInState implements Action {
+  readonly type = SET_LOGGEDIN_STATE;
+
+  constructor() {
+  }
+}
+
 export const LOGOUT = 'LOGOUT';
 
 export class Logout implements Action {
   readonly type = LOGOUT;
 
-  constructor(public payload?: any) {
-  }
-}
-
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-
-export class LogoutSuccess implements Action {
-  readonly type = LOGOUT_SUCCESS;
-
-  constructor(public payload?: any) {
+  constructor() {
   }
 }
 
@@ -68,7 +68,7 @@ export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export class FetchProducts implements Action {
   readonly type = FETCH_PRODUCTS;
 
-  constructor(public payload?: any) {
+  constructor() {
   }
 }
 
@@ -82,24 +82,6 @@ export class FetchProductsSuccess implements Action {
   }
 }
 
-export const UPLOAD_PRODUCT = 'UPLOAD_PRODUCT';
-
-export class UploadProduct implements Action {
-  readonly type = UPLOAD_PRODUCT;
-
-  constructor(public payload?: any) {
-  }
-}
-
-export const UPLOAD_PRODUCT_SUCCESS = 'UPLOAD_PRODUCT_SUCCESS';
-
-export class UploadProductSuccess implements Action {
-  readonly type = UPLOAD_PRODUCT_SUCCESS;
-
-  constructor(public payload?: any) {
-  }
-}
-
 
 // REDUCER
 
@@ -107,6 +89,13 @@ export function appReducer(state = initialState, action: OwnAction): State {
   switch (action.type) {
     case LOGIN_SUCCESS: {
       sessionStorage.setItem('SiennToken', action.payload.access_token);
+      return {
+        ...state,
+        loggedIn: true
+      };
+    }
+
+    case SET_LOGGEDIN_STATE: {
       return {
         ...state,
         loggedIn: true
@@ -128,13 +117,6 @@ export function appReducer(state = initialState, action: OwnAction): State {
       };
     }
 
-    case UPLOAD_PRODUCT_SUCCESS: {
-      return {
-        ...state,
-        products: action.payload
-      };
-    }
-
     default:
       return state;
   }
@@ -142,9 +124,11 @@ export function appReducer(state = initialState, action: OwnAction): State {
 
 export type Actions
   = Login |
-  LoginSuccess|
+  LoginSuccess |
+  SetLoggedInState |
   Logout |
-  FetchProducts;
+  FetchProducts |
+  FetchProductsSuccess;
 
 
 // SELECTORS

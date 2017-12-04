@@ -16,16 +16,16 @@ import {Observable} from 'rxjs/Observable';
 })
 export class TopMenuComponent implements OnInit {
   logged$: Observable<boolean>;
-  token: string;
-  userName$: Observable<string>;
-  userEmail$: Observable<string>;
 
   constructor(private router: Router,
               private store: Store<fromRoot.State>,
-              private cd: ChangeDetectorRef) {
+              private auth: AuthGuard) {
   }
 
   ngOnInit() {
+    if (this.auth.isAuthenticated()) {
+      this.store.dispatch(new fromRoot.SetLoggedInState);
+    }
     this.logged$ = this.store.select(fromRoot.getLoggedState);
   }
 
