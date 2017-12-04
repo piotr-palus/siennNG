@@ -1,4 +1,4 @@
-import {Action, ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {Action, ActionReducer, MetaReducer} from '@ngrx/store';
 
 export interface OwnAction extends Action {
   type: string;
@@ -8,11 +8,13 @@ export interface OwnAction extends Action {
 // STATE
 export interface State {
   loggedIn: boolean;
+  loginErrors: string
   products: string[];
 }
 
 export const initialState: State = {
   loggedIn: false,
+  loginErrors: '',
   products: []
 };
 
@@ -40,6 +42,15 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
+
+  constructor(public payload?: any) {
+  }
+}
+
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export class LoginFailure implements Action {
+  readonly type = LOGIN_FAILURE;
 
   constructor(public payload?: any) {
   }
@@ -82,6 +93,15 @@ export class FetchProductsSuccess implements Action {
   }
 }
 
+export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
+
+export class FetchProductsFailure implements Action {
+  readonly type = FETCH_PRODUCTS_FAILURE;
+
+  constructor(public payload?: null) {
+  }
+}
+
 
 // REDUCER
 
@@ -92,6 +112,13 @@ export function appReducer(state = initialState, action: OwnAction): State {
       return {
         ...state,
         loggedIn: true
+      };
+    }
+
+    case LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginErrors: action.payload.error
       };
     }
 
@@ -125,13 +152,16 @@ export function appReducer(state = initialState, action: OwnAction): State {
 export type Actions
   = Login |
   LoginSuccess |
+  LoginFailure |
   SetLoggedInState |
   Logout |
   FetchProducts |
-  FetchProductsSuccess;
+  FetchProductsSuccess |
+  FetchProductsFailure;
 
 
 // SELECTORS
 
 export const getLoggedState = (state: State) => state.loggedIn;
 export const getProducts = (state: State) => state.products;
+export const getLoginErrors = (state: State) => state.loginErrors;

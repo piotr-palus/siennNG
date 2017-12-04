@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../store/state';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import * as fromRoot from '../../store/state';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loginError$: Observable<string>;
 
   get username() {
     return this.loginForm.get('UserName');
@@ -30,6 +32,8 @@ export class LoginComponent implements OnInit {
       UserName: ['', Validators.required],
       Password: ['', Validators.required]
     });
+
+    this.loginError$ = this.store.select(fromRoot.getLoginErrors);
   }
 
   loginSubmit() {
